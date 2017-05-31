@@ -1,4 +1,4 @@
-program OrderProcessing;
+program OrderProcessing2;
 
 {$APPTYPE CONSOLE}
 
@@ -6,7 +6,7 @@ program OrderProcessing;
 
 uses
   System.SysUtils,
-  ProcessOrder in 'ProcessOrder.pas';
+  ProcessOrder in '..\Step2\ProcessOrder.pas';
 
 begin
   try
