@@ -10,15 +10,18 @@ uses
   Document in 'Document.pas';
 
 var
-  fDoc: TDocument;
+  Document: TDocument;
 begin
+  ReportMemoryLeaksOnShutdown := True;
   try
-    fDoc := TDocument.Create('Test');
+    Document := TDocument.Create('This is the document text');
     try
-      fdoc.GrammerChecker := TRealGrammarChecker.Create;
-      fDoc.CheckGrammer;
+      Document.CheckGrammer;
+      Document.GrammerChecker := TRealGrammarChecker.Create;
+      Document.CheckGrammer;
+//      Document.GrammerChecker := nil;
     finally
-      fDoc.Free;
+      Document.Free;
     end;
     ReadLn;
   except
