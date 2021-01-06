@@ -17,6 +17,7 @@ uses
 procedure RegisterTypes(const container: TContainer);
 begin
   container.RegisterType<TOrderEntry>;
+  container.RegisterType<TOrderProcessor>;
   container.RegisterType<TOrderValidator>;
 
   container.Build;
