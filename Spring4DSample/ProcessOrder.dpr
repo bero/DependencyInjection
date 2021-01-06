@@ -10,7 +10,8 @@ uses
   uOrderInterfaces in 'uOrderInterfaces.pas',
   uOrderProcessor in 'uOrderProcessor.pas',
   uOrderValidator in 'uOrderValidator.pas',
-  uRegistrations in 'uRegistrations.pas';
+  uRegistrations in 'uRegistrations.pas',
+  uOrderEntryDecorator in 'uOrderEntryDecorator.pas';
 
 begin
   try
