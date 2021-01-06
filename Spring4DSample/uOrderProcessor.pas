@@ -4,27 +4,23 @@ interface
 
 uses
   uOrder,
-  uOrderInterfaces;
+  uOrderInterfaces,
+  Spring.Container.Common;
 
 type
   TOrderProcessor = class(TInterfacedObject, IOrderProcessor)
   private
+    [Inject]
     FOrderValidator: IOrderValidator;
+    [Inject]
     FOrderEntry: IOrderEntry;
   public
-    constructor Create(aOrderValidator: IOrderValidator; aOrderEntry: IOrderEntry);
     function ProcessOrder(aOrder: TOrder): Boolean;
   end;
 
 implementation
 
 { TOrderProcessor }
-
-constructor TOrderProcessor.Create(aOrderValidator: IOrderValidator; aOrderEntry: IOrderEntry);
-begin
-  FOrderValidator := aOrderValidator;
-  FOrderEntry := aOrderEntry;
-end;
 
 function TOrderProcessor.ProcessOrder(aOrder: TOrder): Boolean;
 var
