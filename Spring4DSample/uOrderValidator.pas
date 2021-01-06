@@ -6,7 +6,11 @@ uses
   uOrder;
 
 type
-  TOrderValidator = class
+  IOrderValidator = interface
+    function ValidateOrder(aOrder: TOrder): Boolean;
+  end;
+
+  TOrderValidator = class(TInterfacedObject, IOrderValidator)
   public
     function ValidateOrder(aOrder: TOrder): Boolean;
   end;

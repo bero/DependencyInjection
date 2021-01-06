@@ -7,23 +7,19 @@ procedure DoOrderProcessing;
 implementation
 
 uses
-   uOrder,
-   uOrderProcessor;
+  uOrder,
+  uOrderProcessor;
 
 procedure DoOrderProcessing;
 var
   Order: TOrder;
-  OrderProcessor: TOrderProcessor;
+  OrderProcessor: IOrderProcessor;
 begin
   Order := TOrder.Create;
+  OrderProcessor := TOrderProcessor.Create;
   try
-    OrderProcessor := TOrderProcessor.Create;
-    try
-      if OrderProcessor.ProcessOrder(Order) then
-        Writeln('Order successfully processed....');
-    finally
-      OrderProcessor.Free;
-    end;
+    if OrderProcessor.ProcessOrder(Order) then
+      Writeln('Order successfully processed....');
   finally
     Order.Free;
   end;

@@ -8,13 +8,16 @@ uses
   uOrderValidator;
 
 type
-  TOrderProcessor = class
+  IOrderProcessor = interface
+    function ProcessOrder(aOrder: TOrder): Boolean;
+  end;
+
+  TOrderProcessor = class(TInterfacedObject, IOrderProcessor)
   private
-    FOrderValidator: TOrderValidator;
-    FOrderEntry: TOrderEntry;
+    FOrderValidator: IOrderValidator;
+    FOrderEntry: IOrderEntry;
   public
     constructor Create;
-    destructor Destroy; override;
     function ProcessOrder(aOrder: TOrder): Boolean;
   end;
 
@@ -26,13 +29,6 @@ constructor TOrderProcessor.Create;
 begin
   FOrderValidator := TOrderValidator.Create;
   FOrderEntry := TOrderEntry.Create;
-end;
-
-destructor TOrderProcessor.Destroy;
-begin
-  FOrderValidator.Free;
-  FOrderEntry.Free;
-  inherited;
 end;
 
 function TOrderProcessor.ProcessOrder(aOrder: TOrder): Boolean;

@@ -6,7 +6,11 @@ uses
   uOrder;
 
 type
-  TOrderEntry = class
+  IOrderEntry = interface
+    function EnterOrderIntoDatabase(aOrder: TOrder): Boolean;
+  end;
+
+  TOrderEntry = class(TInterfacedObject, IOrderEntry)
   public
     function EnterOrderIntoDatabase(aOrder: TOrder): Boolean;
   end;
