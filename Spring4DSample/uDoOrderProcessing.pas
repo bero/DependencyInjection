@@ -9,8 +9,8 @@ implementation
 uses
   uOrder,
   uOrderProcessor,
-  uOrderValidator,
-  uOrderEntry;
+  uOrderValidatorMock,
+  uOrderEntryMock;
 
 procedure DoOrderProcessing;
 var
@@ -18,7 +18,7 @@ var
   OrderProcessor: IOrderProcessor;
 begin
   Order := TOrder.Create;
-  OrderProcessor := TOrderProcessor.Create(TOrderValidator.Create, TOrderEntry.Create);
+  OrderProcessor := TOrderProcessor.Create(TOrderValidatorMock.Create, TOrderEntryMock.Create);
   try
     if OrderProcessor.ProcessOrder(Order) then
       Writeln('Order successfully processed....');
