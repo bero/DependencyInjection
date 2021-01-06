@@ -7,6 +7,7 @@ uses
   uDoOrderProcessing in 'uDoOrderProcessing.pas',
   uOrder in 'uOrder.pas',
   uOrderEntry in 'uOrderEntry.pas',
+  uOrderInterfaces in 'uOrderInterfaces.pas',
   uOrderProcessor in 'uOrderProcessor.pas',
   uOrderValidator in 'uOrderValidator.pas';
 

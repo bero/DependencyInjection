@@ -3,13 +3,10 @@ unit uOrderValidator;
 interface
 
 uses
-  uOrder;
+  uOrder,
+  uOrderInterfaces;
 
 type
-  IOrderValidator = interface
-    function ValidateOrder(aOrder: TOrder): Boolean;
-  end;
-
   TOrderValidator = class(TInterfacedObject, IOrderValidator)
   public
     function ValidateOrder(aOrder: TOrder): Boolean;

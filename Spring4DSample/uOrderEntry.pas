@@ -3,13 +3,10 @@ unit uOrderEntry;
 interface
 
 uses
-  uOrder;
+  uOrder,
+  uOrderInterfaces;
 
 type
-  IOrderEntry = interface
-    function EnterOrderIntoDatabase(aOrder: TOrder): Boolean;
-  end;
-
   TOrderEntry = class(TInterfacedObject, IOrderEntry)
   public
     function EnterOrderIntoDatabase(aOrder: TOrder): Boolean;

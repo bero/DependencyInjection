@@ -4,14 +4,9 @@ interface
 
 uses
   uOrder,
-  uOrderEntry,
-  uOrderValidator;
+  uOrderInterfaces;
 
 type
-  IOrderProcessor = interface
-    function ProcessOrder(aOrder: TOrder): Boolean;
-  end;
-
   TOrderProcessor = class(TInterfacedObject, IOrderProcessor)
   private
     FOrderValidator: IOrderValidator;
