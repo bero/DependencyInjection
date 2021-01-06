@@ -3,36 +3,30 @@ unit uRegistrations;
 interface
 
 uses
-  Spring.Container;
+  Spring.Container,
+  Spring.Container.Common;
 
 procedure RegisterTypes(const container: TContainer);
 
 implementation
 
 uses
-  Spring.Container.Core,
-  Spring.Reflection,
-  uOrderInterfaces,
+  Spring.Interception,
+  uInterceptors,
   uOrderEntry,
-  uOrderEntryDecorator,
   uOrderProcessor,
   uOrderValidator;
 
 procedure RegisterTypes(const container: TContainer);
 begin
+  container.RegisterType<IInterceptor, TLoggingAspect>('logging');
+  container.RegisterType<TTransactionAspect, TTransactionAspect>('transaction');
   container.RegisterType<TOrderEntry>;
+//    .InterceptedBy<TLoggingAspect>
+//    .InterceptedBy<TTransactionAspect>(TWhere.First);
   container.RegisterType<TOrderValidator>;
+//    .InterceptedBy<TLoggingAspect>;
   container.RegisterType<TOrderProcessor>;
-
-  container.RegisterDecorator<IOrderEntry, TOrderEntryLoggingDecorator>;
-  container.RegisterDecorator<IOrderValidator, TOrderValidatorLoggingDecorator>;
-
-  container.RegisterDecorator<IOrderEntry, TOrderEntryTransactionDecorator>(
-    function(const m: TComponentModel): Boolean
-    begin
-      Result := m.ComponentType.HasCustomAttribute<TransactionAttribute>;
-    end
-  );
 
   container.Build;
 end;

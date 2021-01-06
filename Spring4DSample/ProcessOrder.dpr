@@ -11,7 +11,8 @@ uses
   uOrderProcessor in 'uOrderProcessor.pas',
   uOrderValidator in 'uOrderValidator.pas',
   uRegistrations in 'uRegistrations.pas',
-  uOrderEntryDecorator in 'uOrderEntryDecorator.pas';
+  uOrderEntryDecorator in 'uOrderEntryDecorator.pas',
+  uInterceptors in 'uInterceptors.pas';
 
 begin
   try

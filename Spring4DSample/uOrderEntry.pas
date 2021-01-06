@@ -3,11 +3,13 @@ unit uOrderEntry;
 interface
 
 uses
+  Spring.Container.Common,
   uOrder,
   uOrderInterfaces;
 
 type
-  [Transaction]
+  [Interceptor('logging')]
+  [Interceptor('transaction')]
   TOrderEntry = class(TInterfacedObject, IOrderEntry)
   public
     function EnterOrderIntoDatabase(aOrder: TOrder): Boolean;
