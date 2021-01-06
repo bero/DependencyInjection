@@ -17,7 +17,7 @@ type
     FOrderValidator: IOrderValidator;
     FOrderEntry: IOrderEntry;
   public
-    constructor Create;
+    constructor Create(aOrderValidator: IOrderValidator; aOrderEntry: IOrderEntry);
     function ProcessOrder(aOrder: TOrder): Boolean;
   end;
 
@@ -25,10 +25,10 @@ implementation
 
 { TOrderProcessor }
 
-constructor TOrderProcessor.Create;
+constructor TOrderProcessor.Create(aOrderValidator: IOrderValidator; aOrderEntry: IOrderEntry);
 begin
-  FOrderValidator := TOrderValidator.Create;
-  FOrderEntry := TOrderEntry.Create;
+  FOrderValidator := aOrderValidator;
+  FOrderEntry := aOrderEntry;
 end;
 
 function TOrderProcessor.ProcessOrder(aOrder: TOrder): Boolean;

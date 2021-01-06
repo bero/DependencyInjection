@@ -8,7 +8,9 @@ implementation
 
 uses
   uOrder,
-  uOrderProcessor;
+  uOrderProcessor,
+  uOrderValidator,
+  uOrderEntry;
 
 procedure DoOrderProcessing;
 var
@@ -16,7 +18,7 @@ var
   OrderProcessor: IOrderProcessor;
 begin
   Order := TOrder.Create;
-  OrderProcessor := TOrderProcessor.Create;
+  OrderProcessor := TOrderProcessor.Create(TOrderValidator.Create, TOrderEntry.Create);
   try
     if OrderProcessor.ProcessOrder(Order) then
       Writeln('Order successfully processed....');
