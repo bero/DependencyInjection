@@ -7,20 +7,25 @@ procedure DoOrderProcessing;
 implementation
 
 uses
+  Spring.Container,
   uOrder,
   uOrderInterfaces,
   uOrderProcessor,
-  uOrderValidator,
-  uOrderEntry;
+  uRegistrations;
 
 procedure DoOrderProcessing;
 var
   Order: TOrder;
   OrderProcessor: IOrderProcessor;
+  OrderValidator: IOrderValidator;
+  OrderEntry: IOrderEntry;
 begin
+  RegisterTypes(GlobalContainer);
   Order := TOrder.Create;
-  OrderProcessor := TOrderProcessor.Create(TOrderValidator.Create, TOrderEntry.Create);
   try
+    OrderValidator := GlobalContainer.Resolve<IOrderValidator>;
+    OrderEntry := GlobalContainer.Resolve<IOrderEntry>;
+    OrderProcessor := TOrderProcessor.Create(OrderValidator, OrderEntry);
     if OrderProcessor.ProcessOrder(Order) then
       Writeln('Order successfully processed....');
   finally
